@@ -63,5 +63,5 @@ or edit the code, in line 7: PATH="paste here your chrome webdriver location"
 #### Now run the WA_GFGcode_sender.py script, automatically new chrome will open and whatsapp web will get open, now scan the QR code !
 #### chat will be loaded then click on a chat manually
 #### now it will start scanning the last message of current chat and if it found a message start with #gfg then it will pick the message and search of whatever given after #gfg in google and then get first top link and then send request on that link and then does web scraping and extract the code result of the given program and then automatically write it in the message box and automatically send, if found! otherwise it will print "error!"
-Also read code link 18 and 27
+Also read code link 18
 <hr>

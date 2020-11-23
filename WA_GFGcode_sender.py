@@ -23,15 +23,21 @@ input("NOW OPEN A WHATSAPP CHAT AND PRESS ENTER")
 def refresh():
     time.sleep(1)
 
+    #Find class name of message
+    outer=driver.find_element_by_css_selector('div[class="copyable-text"]')
+    inner=outer.find_element_by_css_selector('div[dir="ltr"]')
+    inner.get_attribute("class")
+    msg_class=inner.get_attribute("class")
+
     #total chats in current chat
-    chats=driver.find_elements_by_class_name('_1wlJG') #this class name is of messages in chat. all messsages comes under same class, also this class is changed by WA time to time i think so if you got error like "out of index" then change this class name
+    chats=driver.find_elements_by_class_name(msg_class)
 
     #get last message in total chat
     try:
         msg=chats[-1].text
         print("Message is:"+msg)
     except:
-        print("Either chat is empty or messages class name has changed, check link 27 in code")
+        print("Either chat is empty or messages class name is incorrect !")
 
     try:
         if msg[0:4]=='#gfg': # query asked!
