@@ -24,11 +24,17 @@ def refresh():
     time.sleep(1)
 
     #Find class name of message
-    outer=driver.find_element_by_css_selector('div[class="copyable-text"]')
-    inner=outer.find_element_by_css_selector('div[dir="ltr"]')
-    inner.get_attribute("class")
-    msg_class=inner.get_attribute("class")
-
+    try:
+        outer=driver.find_element_by_css_selector('div[class="copyable-text"]')
+        inner=outer.find_element_by_css_selector('div[dir="ltr"]')
+        inner.get_attribute("class")
+        msg_class=inner.get_attribute("class")
+    except:
+        outer=driver.find_element_by_css_selector('div[class="cln10 copyable-text"]')
+        inner=outer.find_element_by_css_selector('div[dir="ltr"]')
+        inner.get_attribute("class")
+        msg_class=inner.get_attribute("class")
+    
     #total chats in current chat
     chats=driver.find_elements_by_class_name(msg_class)
 
@@ -56,8 +62,9 @@ def refresh():
 
             response=requests.get('https://www.google.com'+desiredLink)
 
-            #xpath='/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div[2]/div/div[2]' #path of the typing box of whatsapp chat
-            #msgbox=driver.find_element_by_xpath(xpath)
+            xpath='/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div[2]/div/div[2]' #path of the typing box of whatsapp chat
+            msgbox=driver.find_element_by_xpath(xpath)
+            msgbox.click()
 
             soup=bs(response.content,"lxml")
             code=soup.find("div",class_='code-block').text
@@ -73,10 +80,11 @@ def refresh():
                 else:
                     keyboard.press_and_release('shift+enter')
 
+            time.sleep(1)
             keyboard.press_and_release('enter')
 
             #print(code)
-            time.sleep(2)
+            time.sleep(1)
     except:
         print("ERROR")
 
