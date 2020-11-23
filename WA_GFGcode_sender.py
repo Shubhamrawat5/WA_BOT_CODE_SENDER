@@ -62,9 +62,9 @@ def refresh():
 
             response=requests.get('https://www.google.com'+desiredLink)
 
-            xpath='/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div[2]/div/div[2]' #path of the typing box of whatsapp chat
-            msgbox=driver.find_element_by_xpath(xpath)
-            msgbox.click()
+            # xpath='/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div[2]/div/div[2]' #path of the typing box of whatsapp chat
+            # msgbox=driver.find_element_by_xpath(xpath)
+            # msgbox.click()
 
             soup=bs(response.content,"lxml")
             code=soup.find("div",class_='code-block').text
